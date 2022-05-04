@@ -2,20 +2,34 @@ import * as React from 'react';
 import { Fragment, useRef } from 'react'
 import Image from 'next/image';
 import { Dialog, Transition } from '@headlessui/react'
-
+import { actionLogin } from '../../store/actions';
+import { useDispatch } from 'react-redux';
 interface props {
   modal: any,
   setModal: any
 }
 
 export default function Login({ modal, setModal }: props) {
+  const dispatch = useDispatch();
   const cancelButtonRef = useRef(null)
   const [step, setStep] = React.useState(0);
+  const [inputData, setInputData] = React.useState({
+    email: '',
+    password: '',
+    wallet_address: '111'
+  });
 
   const handleSelectType = (type: any) => {
     setStep(1);
   }
 
+  const handleChangeInput = (key:any) => (event:any) => {
+      setInputData((state:any) => ({...state, [key]: event.target.value}));
+  }
+
+  const handleLogin = () => {
+    dispatch(actionLogin(inputData));
+  }
   return (
     <Transition.Root show={modal} as={Fragment}>
       <Dialog as="div" className="fixed z-10 inset-0 overflow-y-auto" initialFocus={cancelButtonRef} onClose={setModal}>
@@ -52,7 +66,7 @@ export default function Login({ modal, setModal }: props) {
                     <div className='w-full h-full flex'>
                       <div className='flex-0'>
                         <div className='relative w-[200px] h-full'>
-                          <Image src={'/images/landing/login.png'} layout='fill' objectFit='fill' />
+                          <Image src={'/images/login/login.png'} layout='fill' objectFit='fill' />
                         </div>
                       </div>
                       <div className='flex-1 p-8 flex flex-col items-center justify-start'>
@@ -68,7 +82,7 @@ export default function Login({ modal, setModal }: props) {
                             <Image src={'/images/logo.png'} layout='fill' objectFit='fill' />
                           </div>
                           <div className='summary'>
-                            ¡Bienvenido! Explora y colecciona el arte de tu interés con ayuda de Konceptual
+                            Welcome! Explore and collect the art of your interest with the help of Konceptual
                           </div>
                           {
                             step == 0 ? (
@@ -79,14 +93,14 @@ export default function Login({ modal, setModal }: props) {
                                     className="mt-3 w-[250px] h-[40px] inline-flex justify-center rounded-md border border-black shadow-sm px-4 py-2 bg-black text-base font-medium text-white hover:bg-slate-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
                                     onClick={handleSelectType}
                                   >
-                                    ¿Ya eres artista?
+                                    Are you already an artist?
                                   </button>
                                   <button
                                     type="button"
                                     className="mt-3 w-[250px] h-[40px] inline-flex justify-center rounded-md border border-black shadow-sm px-4 py-2 bg-black text-base font-medium text-white hover:bg-slate-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
                                     onClick={handleSelectType}
                                   >
-                                    Soy coleccionista
+                                    I am a collector
                                   </button>
                                 </div>
                               </>
@@ -94,26 +108,30 @@ export default function Login({ modal, setModal }: props) {
                               <>
                                 <div className='my-2 w-full'>
                                   <div className="col-span-6 sm:col-span-4 py-2">
-                                    <label htmlFor="email-address" className="block text-sm font-medium text-black">
-                                      Correo electrónico:
+                                    <label htmlFor="email" className="block text-sm font-medium text-black">
+                                      Email:
                                     </label>
                                     <input
                                       type="text"
-                                      name="email-address"
-                                      id="email-address"
+                                      name="email"
+                                      id="email"
                                       autoComplete="email"
+                                      value={inputData.email}
+                                      onChange={handleChangeInput('email')}
                                       className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-lg sm:text-sm border-gray-300 rounded-md"
                                     />
                                   </div>
                                   <div className="col-span-6 sm:col-span-4 py-2">
-                                    <label htmlFor="email-address" className="block text-sm font-medium text-black">
-                                      Contraseña:
+                                    <label htmlFor="password" className="block text-sm font-medium text-black">
+                                      Password:
                                     </label>
                                     <input
                                       type="text"
-                                      name="email-address"
-                                      id="email-address"
+                                      name="password"
+                                      id="password"
                                       autoComplete="email"
+                                      value={inputData.password}
+                                      onChange={handleChangeInput('password')}
                                       className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-lg sm:text-sm border-gray-300 rounded-md"
                                     />
                                   </div>
@@ -121,13 +139,13 @@ export default function Login({ modal, setModal }: props) {
                                     <button
                                       type="button"
                                       className="mt-3 w-[150px] h-[40px] inline-flex justify-center rounded-md border border-[#71B62F] shadow-sm px-4 py-2 bg-[#71B62F] text-base font-medium text-white hover:bg-[#71B62F] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#71B62F] sm:mt-0 sm:ml-3 sm:text-sm"
-                                      onClick={handleSelectType}
+                                      onClick={handleLogin}
                                     >
-                                      Continuar
+                                      Continue
                                     </button>
                                   </div>
                                   <div className='link flex items-center justify-center py-4'>
-                                    <div className=''>Inicia sesión con: </div>
+                                    <div className=''>Sign in with: </div>
                                     <div className='mx-2'>
                                       <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M12.01 6.87375C11.352 6.23855 10.5151 5.91513 9.58304 5.91513C7.9295 5.91513 6.52991 7.04274 6.03067 8.55789C5.9037 8.9425 5.83155 9.35335 5.83155 9.77584C5.83155 10.1983 5.90369 10.6092 6.03066 10.9938C6.5299 12.5089 7.9295 13.6365 9.58304 13.6365C10.4372 13.6365 11.1644 13.4092 11.7329 13.0246C12.4053 12.5701 12.8526 11.8912 12.9998 11.0899H9.58303V8.61035H15.5623C15.6373 9.02992 15.6777 9.46699 15.6777 9.92153C15.6777 11.8737 14.9852 13.5171 13.7847 14.6331C12.7343 15.6121 11.2972 16.186 9.58304 16.186C7.1013 16.186 4.9543 14.7496 3.90965 12.6546C3.47968 11.7892 3.23438 10.8102 3.23438 9.77584C3.23438 8.74147 3.47966 7.76245 3.90964 6.89707C4.95429 4.80209 7.10129 3.3656 9.58304 3.3656C11.2943 3.3656 12.7314 4.0008 13.8309 5.03518L12.01 6.87375Z" fill="#232323" />
@@ -145,11 +163,10 @@ export default function Login({ modal, setModal }: props) {
                                   </div>
                                   <div className='url my-2'>
                                     <div className='flex items-center justify-center'>
-                                      <div>¿Olvidaste tu contraseña?</div>
-                                      <a className='text-sky-500 mx-2'>Ingresa aquí para recuperarla</a>
+                                      <div>Did you forget your password?</div>
                                     </div>
                                     <div className='flex items-center justify-center'>
-                                      <a className='text-sky-500'>Ingresa aquí para recuperarla</a>
+                                      <a className='text-sky-500'> Login here to get her back</a>
                                     </div>
                                   </div>
                                 </div>

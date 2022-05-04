@@ -5,7 +5,6 @@ declare const window: Window &
   typeof globalThis & {
   };
 
-
 export default function ({ data }: { data: any }) {
   return (
     <div className='chart w-full'>

@@ -5,6 +5,10 @@ import '@/styles/globals.css';
 import '@/styles/colors.css';
 import '@/styles/home.css';
 
+import Auth from '../hooks/useAuth';
+import Authorization from '../hooks/useAuthorization';
+import { Provider } from "react-redux";
+import store from '@/store';
 /**
  * !STARTERCONF info
  * ? `Layout` component is called in every page using `np` snippets. If you have consistent layout across all page, you can add it here too
@@ -20,7 +24,13 @@ function MyApp({ Component, pageProps }: AppProps) {
         height={4}
         showOnShallow={true}
       />
-      <Component {...pageProps} />
+      <Provider store={store}>
+        <Auth>
+          <Authorization>
+            <Component {...pageProps} />
+          </Authorization>
+        </Auth>
+      </Provider>
     </>
   )
 }
