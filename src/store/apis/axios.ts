@@ -2,7 +2,7 @@ import Axios from "axios";
 
 const axios = Axios.create({
     responseType: "json",
-    baseURL: 'http://konceptual-backend.herokuapp.com/',
+    baseURL: 'https://konceptual-backend.herokuapp.com/',
     headers: {
         'Content-Type': 'application/json',
         'accept': 'application/json',
