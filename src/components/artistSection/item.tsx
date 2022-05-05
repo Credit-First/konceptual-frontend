@@ -3,39 +3,42 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/solid'
 import DropdownBtn from '../components/dropdownBtn';
+import { selectAuthItem } from '@/store/selectors';
 
 const itemList = [
-  { img: '/images/artist/1.png', title: 'Anette Black', location: 'País' },
-  { img: '/images/artist/2.png', title: 'Esther Miranda', location: 'País' },
-  { img: '/images/artist/3.png', title: 'Black Jack', location: 'País' },
-  { img: '/images/artist/1.png', title: 'Anette Black', location: 'País' },
-  { img: '/images/artist/2.png', title: 'Esther Miranda', location: 'País' },
-  { img: '/images/artist/3.png', title: 'Black Jack', location: 'País' },
-  { img: '/images/artist/1.png', title: 'Anette Black', location: 'País' },
-  { img: '/images/artist/2.png', title: 'Esther Miranda', location: 'País' },
-  { img: '/images/artist/3.png', title: 'Black Jack', location: 'País' },
-  { img: '/images/artist/1.png', title: 'Anette Black', location: 'País' },
-  { img: '/images/artist/2.png', title: 'Esther Miranda', location: 'País' },
-  { img: '/images/artist/3.png', title: 'Black Jack', location: 'País' },
+  { id: 1, img: '/images/artist/1.png', title: 'Anette Black', location: 'País' },
+  { id: 2, img: '/images/artist/2.png', title: 'Esther Miranda', location: 'País' },
+  { id: 3, img: '/images/artist/3.png', title: 'Black Jack', location: 'País' },
+  { id: 4, img: '/images/artist/1.png', title: 'Anette Black', location: 'País' },
+  { id: 5, img: '/images/artist/2.png', title: 'Esther Miranda', location: 'País' },
+  { id: 6, img: '/images/artist/3.png', title: 'Black Jack', location: 'País' },
+  { id: 7, img: '/images/artist/1.png', title: 'Anette Black', location: 'País' },
+  { id: 8, img: '/images/artist/2.png', title: 'Esther Miranda', location: 'País' },
+  { id: 9, img: '/images/artist/3.png', title: 'Black Jack', location: 'País' },
+  { id: 10, img: '/images/artist/1.png', title: 'Anette Black', location: 'País' },
+  { id: 11, img: '/images/artist/2.png', title: 'Esther Miranda', location: 'País' },
+  { id: 12, img: '/images/artist/3.png', title: 'Black Jack', location: 'País' },
 ];
+
 
 export default function ArtistItem() {
   const router = useRouter();
-  const { item } = router.query;
+  const { item_id } = router.query;
 
   const [pos, setPos] = React.useState(0);
   const [skip, setSkip] = React.useState(2);
   const [searchText, setSearchText] = React.useState('');
-  const [list, setList] = React.useState(itemList);
+  const [relativeList, setRelativeList] = React.useState(itemList);
+  const [item, setItem] = React.useState<any>(null);
 
-  const tempList = list.filter((item: any, key: any) => {
+  const tempList = relativeList.filter((item: any, key: any) => {
     if (key >= pos && key <= pos + skip) {
       return item;
     }
   })
 
   const handleNext = () => {
-    if ((pos + skip) > list.length) return;
+    if ((pos + skip) > relativeList.length) return;
     setPos(pos + skip);
   }
 
@@ -55,8 +58,15 @@ export default function ArtistItem() {
 
       if (title.indexOf(search) >= 0) return item;
     })
-    setList(newList);
+    setRelativeList(newList);
   }
+
+  React.useEffect(() => {
+    if (item_id) {
+      const item: any = itemList.find((item: any) => item.id == item_id)
+      setItem(item);
+    }
+  }, [item_id]);
 
   return (
     <>
@@ -71,7 +81,9 @@ export default function ArtistItem() {
             </svg>
           </div>
           <div className='relative h-[350px] w-full my-2'>
-            <Image src={'/images/artist/3.png'} layout='fill' objectFit='fill' />
+            {
+              item && <Image src={item.img} layout='fill' objectFit='fill' />
+            }
           </div>
           <div className='flex flex-col w-full my-2'>
             <div className='font-bold border-b-[1px] border-b-black'>
@@ -83,7 +95,7 @@ export default function ArtistItem() {
                 name="name"
                 id="name"
                 autoComplete="name"
-                placeholder='Anette Black'
+                placeholder={item && item.title}
                 className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
               />
             </div>
@@ -98,7 +110,7 @@ export default function ArtistItem() {
                 name="name"
                 id="name"
                 autoComplete="name"
-                placeholder='USA'
+                placeholder={item && item.location}
                 className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
               />
             </div>

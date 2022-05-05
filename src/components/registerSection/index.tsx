@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Fragment, useRef } from 'react'
 import Image from 'next/image';
 import { Dialog, Transition } from '@headlessui/react'
-import { actionRegister } from '../../store/actions';
+import { actionRegister } from '../../store/actions/index';
 import { useDispatch } from 'react-redux';
 interface props {
   modal: any,

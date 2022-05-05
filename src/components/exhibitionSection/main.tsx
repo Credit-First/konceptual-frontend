@@ -49,7 +49,7 @@ export default function ExhibitionMainSection() {
               list.map((item: any, key: any) => {
                 const row_reverse = key % 2 == 0 ? 'flex-row-reverse' : 'flex-row';
                 return (
-                  <div key={key} className={`item w-full flex flex-col sm:flex-col md:flex-col lg:${row_reverse} items-center justify-center p-2 md:p-4 lg:p-8 sm:mb-12`}
+                  <div key={key} className={`item w-full flex flex-col md:${row_reverse} lg:${row_reverse} items-center justify-center p-2 md:p-4 lg:p-8 sm:mb-12`}
                     onClick={(handleView(item))}
                   >
                     <div className='left w-full p-2 md:p-4 lg:p-12 flex items-center justify-center'>

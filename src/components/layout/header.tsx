@@ -41,7 +41,9 @@ export default function Header({ sectionIdx, onClick, main }: { sectionIdx?: any
   }
 
   React.useEffect(() => {
-  }, [successLog])
+    setLogin(false);
+    setRegister(false);
+  }, [user])
   return (
     <Disclosure as='nav' className={clsx('fixed top-0 z-10 w-full ', main ? 'shadow-md backdrop-blur-sm bg-white/[.7]' : ((!onClick && sectionIdx != 0) ? 'shadow-md backdrop-blur-sm bg-white/[.7]' : ''))}>
       {({ open }) => (
