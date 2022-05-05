@@ -53,7 +53,8 @@ class jwtService extends Emitter {
                 wallet_address: data.wallet_address
             })
                 .then(response => {
-                    if (response.data.user) {
+                    if (response.data) {
+                        this.setSession(response.data.token);
                         resolve(response.data.user);
                     }
                     else {

@@ -172,7 +172,7 @@ export default function Header({ sectionIdx, onClick, main }: { sectionIdx?: any
                         <div className={clsx('cursor-pointer ml-4 flex rounded-lg border-2 py-2 px-4 text-sm text-white focus:outline-none focus:ring-2',
                           main ? 'border-black bg-black' : ((onClick || sectionIdx == 0) ? 'border-white' : 'border-black bg-black')
                         )}
-                        onClick={() => setRegister(true)}
+                          onClick={() => setRegister(true)}
                         >
                           <button>Sign up</button>
                         </div>
@@ -182,7 +182,7 @@ export default function Header({ sectionIdx, onClick, main }: { sectionIdx?: any
                   {
                     user ? (
                       <div className={`text-${color} flex items-center justify-center cursor-pointer ml-4 py-2 px-4`}>
-                        {user.wallet_address}
+                        {user.wallet_address.substring(0, 5)}...{user.wallet_address.substring(user.wallet_address.length - 4)}
                       </div>
                     ) : (
                       <div className='cursor-pointer ml-4 flex py-2 px-4'>
