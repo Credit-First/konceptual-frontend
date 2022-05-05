@@ -1,17 +1,15 @@
-/* This example requires Tailwind CSS v2.0+ */
 import * as React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import clsx from 'clsx';
 import { Disclosure } from '@headlessui/react';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
-import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/solid'
 import MenuDropdownBtn from '../components/accountDropdownBtn';
 import Login from '@/components/loginSection';
+import Register from '../registerSection';
 
 import { selectAuth, selectAuthItem } from '@/store/selectors';
 import { useDispatch, useSelector } from 'react-redux';
-import Image from 'next/image';
 import { actionLogout } from '@/store/actions';
 
 const navigation = [
@@ -34,7 +32,7 @@ export default function Header({ sectionIdx, onClick, main }: { sectionIdx?: any
   const user = useSelector(selectAuth);
   const successLog = useSelector(selectAuthItem('loginSuccess'));
   const [login, setLogin] = React.useState(false);
-
+  const [register, setRegister] = React.useState(false);
   const color = main ? 'black' : ((onClick || sectionIdx == 0) ? 'white' : 'black');
   const bgcolor = main ? 'white' : ((onClick || sectionIdx == 0) ? 'black' : 'white');
 
@@ -173,7 +171,9 @@ export default function Header({ sectionIdx, onClick, main }: { sectionIdx?: any
                         </div>
                         <div className={clsx('cursor-pointer ml-4 flex rounded-lg border-2 py-2 px-4 text-sm text-white focus:outline-none focus:ring-2',
                           main ? 'border-black bg-black' : ((onClick || sectionIdx == 0) ? 'border-white' : 'border-black bg-black')
-                        )}>
+                        )}
+                        onClick={() => setRegister(true)}
+                        >
                           <button>Sign up</button>
                         </div>
                       </>
@@ -244,6 +244,7 @@ export default function Header({ sectionIdx, onClick, main }: { sectionIdx?: any
             </div>
           </Disclosure.Panel>
           <Login modal={login} setModal={setLogin} />
+          <Register modal={register} setModal={setRegister} />
         </>
       )}
     </Disclosure>

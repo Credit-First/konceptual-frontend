@@ -23,8 +23,8 @@ export default function Login({ modal, setModal }: props) {
     setStep(1);
   }
 
-  const handleChangeInput = (key:any) => (event:any) => {
-      setInputData((state:any) => ({...state, [key]: event.target.value}));
+  const handleChangeInput = (key: any) => (event: any) => {
+    setInputData((state: any) => ({ ...state, [key]: event.target.value }));
   }
 
   const handleLogin = () => {
@@ -78,7 +78,7 @@ export default function Login({ modal, setModal }: props) {
                           </div>
                         </div>
                         <div className='px-8 w-full h-full flex flex-col items-center justify-center'>
-                          <div className='logo relative mt-6 mb-4 w-[350px] h-[150px]'>
+                          <div className='logo relative mt-6 mb-4 w-[350px] h-[150px] flex items-center justify-center'>
                             <Image src={'/images/logo.png'} layout='fill' objectFit='fill' />
                           </div>
                           <div className='summary'>

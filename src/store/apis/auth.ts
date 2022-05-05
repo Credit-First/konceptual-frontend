@@ -46,15 +46,11 @@ class jwtService extends Emitter {
 
     createUser = (data: any) => {
         return new Promise((resolve, reject) => {
-            axios.post('/api/v1/users/', {
-                user: {
-                    first_name: data.firstName,
-                    last_name: data.lastName,
-                    email: data.email,
-                    username: data.userName,
-                    password: data.password,
-                    password_confirmation: data.passwordConfirm,
-                }
+            axios.post('/api/auth/register/', {
+                username: data.username,
+                email: data.email,
+                password: data.password,
+                wallet_address: data.wallet_address
             })
                 .then(response => {
                     if (response.data.user) {
