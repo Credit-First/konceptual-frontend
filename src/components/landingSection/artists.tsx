@@ -51,7 +51,7 @@ export default function ArtistsSection({ size }: { size: any }) {
         </div>
       </div>
       <div className='explorer absolute right-14 bottom-14 text-white cursor-pointer animate-bounceVertical'>
-        <Link href={'artist'}>
+        <Link href='/artist'>
           <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
             <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
           </svg>
