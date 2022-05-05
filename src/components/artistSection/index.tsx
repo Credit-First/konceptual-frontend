@@ -20,9 +20,10 @@ const list = [
 export default function ArtistasSection() {
   const router = useRouter();
   const handleView = (item: any) => () => {
+    console.log(item)
     router.push({
       pathname: `/artist/item`,
-      query: { item: item },
+      // query: { item: item },
     })
   }
   return (
