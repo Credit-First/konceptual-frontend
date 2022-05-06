@@ -10,7 +10,6 @@ export const TYPE_UPDATE_ERROR = 'TYPE_UPDATE_ERROR';
 export const TYPE_UPDATE_SUCCESS = 'TYPE_UPDATE_SUCCESS';
 
 export function actionLogout() {
-    console.log('log out')
     return (dispatch: any) => {
         AuthService.logout();
         return dispatch({
