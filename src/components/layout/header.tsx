@@ -173,7 +173,7 @@ export default function Header({ sectionIdx, onClick, main }: { sectionIdx?: any
                 </div>
               </div>
               <div className='absolute inset-y-0 right-0 flex items-center pr-6 sm:static sm:inset-auto sm:ml-6 sm:pr-0'>
-                <div className='relative ml-3 flex'>
+                <div className='relative ml-3 flex items-center'>
                   {
                     user ? (
                       <MenuDropdownBtn
@@ -207,19 +207,11 @@ export default function Header({ sectionIdx, onClick, main }: { sectionIdx?: any
                       </>
                     )
                   }
-                  {
-                    user ? (
-                      <div className={`text-${color} flex items-center justify-center cursor-pointer ml-4 py-2 px-4`}>
-                        {user.wallet_address.substring(0, 5)}...{user.wallet_address.substring(user.wallet_address.length - 4)}
-                      </div>
-                    ) : (
-                      <>
-                        {/* <WalletMultiButton className="btn btn-ghost" /> */}
-                        <WalletButton onUseWalletClick={() => { }} color={color}>
-                        </WalletButton>
-                      </>
-                    )
-                  }
+                  <>
+                    {/* <WalletMultiButton className="btn btn-ghost" /> */}
+                    <WalletButton onUseWalletClick={() => { }} color={color}>
+                    </WalletButton>
+                  </>
                 </div>
               </div>
 
