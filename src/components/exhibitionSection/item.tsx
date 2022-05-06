@@ -59,7 +59,7 @@ const eventTable = [
 export default function ExhibitionItem() {
   const router = useRouter();
   const { item } = router.query;
-  console.log(item)
+  
   return (
     <>
       <div className='board p-24 mt-12'>
