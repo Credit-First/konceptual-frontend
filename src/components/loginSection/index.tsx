@@ -152,7 +152,7 @@ export default function Login({ modal, setModal }: props) {
                                       </svg>
                                     </div>
                                     <div className=''>
-                                      ó
+                                      or
                                     </div>
                                     <div className='mx-2'>
                                       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
