@@ -105,7 +105,7 @@ export default function ArtistasSection() {
                 className='item px-2 sm:w-3/3 my-4 flex flex-col items-center justify-center md:w-2/4 lg:w-1/3'
                 onClick={handleView(item)}
               >
-                <div className='item-image relative h-[340px] w-[288px]'>
+                <div className='item-image relative h-[288px] w-[288px]'>
                   <Image src={item.img} layout='fill' objectFit='fill' />
                 </div>
                 <div className='detail w-[288px] py-4'>

@@ -66,7 +66,7 @@ export default function ExhibitionSection() {
         </div>
       </div>
       <div className='video relative w-full h-[475px]'>
-        <Image src={'/images/exhibition/1.png'} layout='fill' objectFit='fill' />
+        {/* <Image src={'/images/exhibition/1.png'} layout='fill' objectFit='fill' />
         <div className='absolute top-12 left-16 flex items-center justify-start text-white'>
           <div className='mx-6'>
             <div>Discover the exhibition</div>
@@ -92,7 +92,8 @@ export default function ExhibitionSection() {
             <path d="M50 5.9375C25.8398 5.9375 6.25 24.5479 6.25 47.5C6.25 70.4521 25.8398 89.0625 50 89.0625C74.1602 89.0625 93.75 70.4521 93.75 47.5C93.75 24.5479 74.1602 5.9375 50 5.9375ZM50 82.0117C29.9414 82.0117 13.6719 66.5557 13.6719 47.5C13.6719 28.4443 29.9414 12.9883 50 12.9883C70.0586 12.9883 86.3281 28.4443 86.3281 47.5C86.3281 66.5557 70.0586 82.0117 50 82.0117Z" fill="white" />
             <path d="M70.2539 46.3032L41.3379 26.3569C41.106 26.1954 40.8314 26.0983 40.5448 26.0763C40.2582 26.0543 39.9708 26.1084 39.7146 26.2325C39.4584 26.3566 39.2436 26.5458 39.0939 26.7791C38.9443 27.0124 38.8658 27.2805 38.8672 27.5537V67.4463C38.8672 68.6616 40.3125 69.3481 41.3379 68.6431L70.2539 48.6968C70.4536 48.5601 70.6162 48.3803 70.7283 48.1723C70.8404 47.9642 70.8989 47.7338 70.8989 47.5C70.8989 47.2662 70.8404 47.0358 70.7283 46.8277C70.6162 46.6197 70.4536 46.4399 70.2539 46.3032ZM45.0977 58.7349V36.2651L61.377 47.5L45.0977 58.7349Z" fill="white" />
           </svg>
-        </div>
+        </div> */}
+        <iframe src=' https://alt.3dvista.com/samples/real_estate_virtual_tour.html' width={'100%'} height={'100%'}></iframe>
       </div>
       <div className='bg-white w-full h-full flex text-black p-24'>
         <div className='left w-3/5'>
