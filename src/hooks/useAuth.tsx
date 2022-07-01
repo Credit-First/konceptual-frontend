@@ -61,4 +61,6 @@ function mapDispatchToProps(dispatch: any) {
     }, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(Auth);
+export const Auths = ()=> {
+    connect(null, mapDispatchToProps)(Auth);
+}

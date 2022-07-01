@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
+const { min } = require('bn.js');
 const { fontFamily } = require('tailwindcss/defaultTheme');
 
 function withOpacityValue(variable) {
@@ -10,6 +11,20 @@ function withOpacityValue(variable) {
   };
 }
 
+function range(start, end, increment = 1) {
+  const count = Math.floor((end - start + 1)/increment);
+  return Array(count).fill(0).map((_, index) => start + index * increment);
+}
+
+const minFontSize = 5;
+const maxFontSize = 140;
+
+const minSpacingPixel = 0;
+const maxSpacingPixel = 1000;
+const spacingPixelIncrement = 5;
+
+const vhs = ['10vh', '20vh', '30vh', '40vh', '50vh', '60vh', '70vh', '80vh', '90vh', '100vh'];
+
 /** @type {import("@types/tailwindcss/tailwind-config").TailwindConfig } */
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
@@ -19,20 +34,23 @@ module.exports = {
         primary: ['Inter', ...fontFamily.sans],
       },
       colors: {
-        primary: {
-          // Customize it on globals.css :root
-          50: withOpacityValue('--tw-color-primary-50'),
-          100: withOpacityValue('--tw-color-primary-100'),
-          200: withOpacityValue('--tw-color-primary-200'),
-          300: withOpacityValue('--tw-color-primary-300'),
-          400: withOpacityValue('--tw-color-primary-400'),
-          500: withOpacityValue('--tw-color-primary-500'),
-          600: withOpacityValue('--tw-color-primary-600'),
-          700: withOpacityValue('--tw-color-primary-700'),
-          800: withOpacityValue('--tw-color-primary-800'),
-          900: withOpacityValue('--tw-color-primary-900'),
+        colors: {
+          primary: '#AAC9CE',
+          secondary: '#B6B4C2',
+          success: '#C9BBC8',
+          info: '#F3DBCF',
+          danger: '#E5C1CD',
+          dark: '#355C7D',
+          midnight: '#1D263A',
+          teal: '#10CFC9',
+          plum: '#7A306B',
+          honey: '#FFC900',
+          energy: '#3DB859',
+          grey: '#636E75',
+          mist: '#BACFD6',
+          carnation: '#F24D59',
+          cerulean: '#0096DB',
         },
-        dark: '#222222',
       },
       keyframes: {
         flicker: {
@@ -76,6 +94,45 @@ module.exports = {
         shimmer: 'shimmer 1.3s linear infinite',
         bounceVertical: 'bounceVertical 1.3s linear infinite',
         bounceHorizontal: 'bounceHorizontal 1.3s linear infinite',
+      },
+      spacing: {
+        ...range(minSpacingPixel, maxSpacingPixel, spacingPixelIncrement).reduce((merged, f) => ({...merged, [f]: `${f}px`}), {})
+      },
+      maxWidth: {
+        ...range(minSpacingPixel, maxSpacingPixel, spacingPixelIncrement).reduce(
+          (merged, f) => ({ ...merged, [f]: `${f}px` }),
+          {}
+        ),
+      },
+      minWidth: {
+        ...range(minSpacingPixel, maxSpacingPixel, spacingPixelIncrement).reduce(
+          (merged, f) => ({ ...merged, [f]: `${f}px` }),
+          {}
+        ),
+      },
+      maxHeight: {
+        ...range(minSpacingPixel, maxSpacingPixel, spacingPixelIncrement).reduce(
+          (merged, f) => ({ ...merged, [f]: `${f}px` }),
+          {}
+        )
+      },
+      minHeight: {
+        ...range(minSpacingPixel, maxSpacingPixel, spacingPixelIncrement).reduce(
+          (merged, f) => ({ ...merged, [f]: `${f}px` }),
+          {}
+        )
+      },
+      borderWidth: {
+        DEFAULT: '1px',
+        0: '0px',
+        2: '2px',
+        4: '4px',
+        8: '8px',
+        ...range(minFontSize, maxFontSize, 5).reduce((merged, f) => ({ ...merged, [f]: `${f}px`}), {}),
+        
+      },
+      fontSize: {
+        ...range(minFontSize, maxFontSize).reduce((merged, f) => ({ ...merged, [f]: `${f}px`}), {}),
       },
     },
   },

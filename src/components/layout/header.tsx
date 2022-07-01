@@ -34,6 +34,7 @@ const navigation = [
   { id: 2, name: '3D gallery', href: '/gallery', current: true },
   { id: 3, name: 'About us', href: '/about', current: true },
   { id: 4, name: 'Articles', href: '/article', current: true },
+  { id: 5, name: 'Create', href: '/create', current: true },
 ];
 
 export default function Header({ sectionIdx, onClick, main }: { sectionIdx?: any, onClick?: any, main?: any }) {

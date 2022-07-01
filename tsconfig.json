@@ -18,9 +18,10 @@
       "@/*": ["./src/*"],
       "~/*": ["./public/*"]
     },
-    "incremental": true
+    "incremental": true,
+    "downlevelIteration": true
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"],
-  "moduleResolution": ["node_modules", ".next", "node"]
+  "moduleResolution": ["node_modules", ".next", "node"],
 }

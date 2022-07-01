@@ -42,7 +42,7 @@
   }
 
   .cursor-newtab {
-    cursor: url('/images/new-tab.png') 10 10, pointer;
+    cursor: url('/images/new-tab.png') 10 10, pointer;  
   }
 
   /* #region  /**=========== Typography =========== */
@@ -89,6 +89,10 @@
   /* Class to adjust with sticky footer */
   .min-h-main {
     @apply min-h-[calc(100vh-56px)];
+  }
+  button:disabled {
+    cursor: not-allowed !important;
+    background-color: #858585 !important;
   }
 }
 

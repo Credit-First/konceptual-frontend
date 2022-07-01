@@ -1,13 +1,13 @@
 import { AppProps } from 'next/app';
 import dynamic from 'next/dynamic';
 import NextNProgress from "nextjs-progressbar";
+import 'antd/dist/antd.css';
 import '@/styles/globals.css';
 // !STARTERCONF This is for demo purposes, remove @/styles/colors.css import immediately
 import '@/styles/colors.css';
 import '@/styles/home.css';
 
-import Auth from '../hooks/useAuth';
-import Authorization from '../hooks/useAuthorization';
+import {Authorization, Auths} from '@/hooks';
 import { Provider } from "react-redux";
 import store from '@/store';
 
@@ -34,11 +34,11 @@ function MyApp({ Component, pageProps }: AppProps) {
       />
       <WalletProvider>
         <Provider store={store}>
-          <Auth>
-            <Authorization>
-              <Component {...pageProps} />
-            </Authorization>
-          </Auth>
+            <Auths>
+              <Authorization>
+                <Component {...pageProps} />
+              </Authorization>
+            </Auths>
         </Provider>
       </WalletProvider>
     </>

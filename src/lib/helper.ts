@@ -1,3 +1,5 @@
+import { create } from 'ipfs-http-client';
+
 type OpenGraphType = {
   siteName: string;
   description: string;
@@ -21,7 +23,12 @@ export function openGraph({
     : undefined;
   const ogDesc = encodeURIComponent(description.trim());
 
-  return `https://og.thcl.dev/api/general?siteName=${ogSiteName}&description=${ogDesc}&logo=${ogLogo}${
-    ogTemplateTitle ? `&templateTitle=${ogTemplateTitle}` : ''
-  }`;
+  return `https://og.thcl.dev/api/general?siteName=${ogSiteName}&description=${ogDesc}&logo=${ogLogo}${ogTemplateTitle ? `&templateTitle=${ogTemplateTitle}` : ''
+    }`;
+}
+
+export async function uploadToIPFS(file: File) {
+  const client = create({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' });
+  const image_hash = await client.add(file);
+  return image_hash;
 }

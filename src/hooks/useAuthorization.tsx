@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { selectAuth } from '@/store/selectors';
 import { useSelector } from 'react-redux';
 
-export default function Authorization({ children }: { children: any }) {
+export const Authorization = ({ children }: { children: any }) => {
     const router = useRouter();
     const [authorized, setAuthorized] = useState(false);
     const user = useSelector(selectAuth);
